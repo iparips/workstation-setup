@@ -17,12 +17,6 @@ export PATH=$PATH:/Users/iparipsa/.lein
 GPG_TTY=`tty`
 export GPG_TTY
 
-# commonly used dirs
-alias rea='cd ~/BOK/Work/Projects/REA'
-alias proj='cd ~/BOK/Work/Projects'
-alias condor='cd ~/BOK/Work/Projects/REA/condor'
-alias aca='cd ~/BOK/Work/Projects/REA/accepted-contracts-adapter'
-
 # git
 alias g='git status'
 alias gd='git diff'
