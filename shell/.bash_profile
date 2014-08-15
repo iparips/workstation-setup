@@ -1,5 +1,13 @@
 # Prompt
-source .prompt
+source ~/.prompt
+
+# Bash Autocompletion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+# Withenv
+source /usr/local/tools/withenv-master/withenv.bash
 
 # Ssh Private Key Add
 ssh-add
@@ -13,13 +21,11 @@ GPG_TTY=`tty`
 export GPG_TTY
 
 # commonly used dirs
-alias rea='cd ~/BOK/Work/Projects/REA'
-alias proj='cd ~/BOK/Work/Projects'
-alias condor='cd ~/BOK/Work/Projects/REA/condor'
-alias aca='cd ~/BOK/Work/Projects/REA/accepted-contracts-adapter'
+alias rea='cd ~/BOK/Code/REA'
 
 # git
 alias g='git status'
+alias ga='git add -A'
 alias gc='git commit'
 alias gd='git diff'
 alias gp='git pull --rebase'
@@ -28,19 +34,24 @@ alias gsp='git stash && git pull --rebase && git stash pop'
 # ruby
 alias b='bundle'
 alias be='bundle exec'
+alias m='mine .'
 
 # chruby
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 chruby 2.0.0-p353
 
+# postgres
+alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+
 # rea-ec2
 alias rssh=rea-ec2-ssh
 alias rli=rea-ec2-list-instances
 
 # java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home" 
-export PATH=$JAVA_HOME/bin:$PATH 
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home"
+export PATH=$JAVA_HOME/bin:$PATH
 
 # z
 . `brew --prefix`/Cellar/z/1.8/etc/profile.d/z.sh
