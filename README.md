@@ -3,7 +3,7 @@ workstation-setup
 
 This project contains my .bash_profile, .prompt, and a setup script.
 
-Usage
+usage
 =====
 
 ```
@@ -12,7 +12,7 @@ cd workstation-setup
 ./setup.sh
 ```
 
-What setup.sh does / installs
+what setup.sh does / installs
 =======================
 
 - homebrew
