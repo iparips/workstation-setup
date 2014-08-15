@@ -39,7 +39,7 @@ alias m='mine .'
 # chruby
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
-chruby 2.0.0-p353
+chruby 2.1.2
 
 # postgres
 alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
