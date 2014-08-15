@@ -21,7 +21,7 @@ what setup.sh does / installs
 - ruby
 - z
 - soft links ~/.bash_profile & ~/.prompt to workstation-setup bash profile & prompt scripts
-- sources bash profiel
+- sources bash profile
 - installs withenv
 
 
