@@ -50,7 +50,7 @@ alias rssh=rea-ec2-ssh
 alias rli=rea-ec2-list-instances
 
 # java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home"
 export PATH=$JAVA_HOME/bin:$PATH
 
 # z
