@@ -46,3 +46,6 @@ source /usr/local/opt/saml-aws-functions/bash-functions
 
 # haskell
 export PATH="$HOME/Library/Haskell/bin:$PATH"
+
+# docker
+alias dm='docker-machine'
