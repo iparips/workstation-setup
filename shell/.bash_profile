@@ -43,3 +43,6 @@ alias pj='pbpaste | jsonpp | less'
 # aws
 export AWS_CLI=/usr/local/bin/aws
 source /usr/local/opt/saml-aws-functions/bash-functions
+
+# haskell
+export PATH="$HOME/Library/Haskell/bin:$PATH"
