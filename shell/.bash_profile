@@ -10,6 +10,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+source ~/.git-completion.bash
+
 # Withenv
 source /usr/local/opt/withenv/withenv.bash
 
