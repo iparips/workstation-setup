@@ -2,9 +2,6 @@ source ~/.bashrc
 
 # Mac Specific Conifg
 
-GPG_TTY=`tty`
-export GPG_TTY
-
 ## Bash Autocompletion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
@@ -16,12 +13,13 @@ source ~/.git-completion.bash
 source /usr/local/opt/withenv/withenv.bash
 
 ## Ssh Private Key Add
-ssh-add
+#ssh-add
 
 ## PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$PATH:/usr/local/lib/node_modules/bin
 export PATH=$PATH:/Users/iparipsa/.lein
+export PATH=$PATH:/usr/local/tools/rea-slip-utils/bin
 
 ## commonly used dirs
 alias rea='cd ~/BOK/Code/REA'
@@ -43,6 +41,10 @@ alias pj='pbpaste | jsonpp | less'
 
 # aws
 export AWS_CLI=/usr/local/bin/aws
+
+# authenticate config
+export IDP_USER=iparipsa
+export IDP_HOST=idp.realestate.com.au
 source /usr/local/opt/saml-aws-functions/bash-functions
 
 # haskell
@@ -50,3 +52,4 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 # docker
 alias dm='docker-machine'
+alias dc='docker-compose'
