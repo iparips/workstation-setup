@@ -1,55 +1,67 @@
-source ~/.bashrc
-
-# Mac Specific Conifg
+## PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$PATH:/usr/local/lib/node_modules/bin
+export PATH=$PATH:/usr/local/tools/rea-slip-utils/bin
 
 ## Bash Autocompletion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-source ~/.git-completion.bash
-
-# Withenv
-source /usr/local/opt/withenv/withenv.bash
-
-## Ssh Private Key Add
-#ssh-add
-
-## PATH
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$PATH:/usr/local/lib/node_modules/bin
-export PATH=$PATH:/Users/iparipsa/.lein
-export PATH=$PATH:/usr/local/tools/rea-slip-utils/bin
-
-## commonly used dirs
-alias rea='cd ~/BOK/Code/REA'
-
-# postgres
-alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias pg_stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-
-## java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/"
-export PATH=$JAVA_HOME/bin:$PATH
+export EDITOR='subl'
 
 # z
 . `brew --prefix`/etc/profile.d/z.sh
 
-## json
-alias pj='pbpaste | jsonpp | less'
+## commonly used dirs
+alias rea='cd ~/Code/REA'
 
+# Git Bash Prompt
+if [ -f "$(brew --prefix bash-git-prompt)/share/gitprompt.sh" ]; then
+  GIT_PROMPT_THEME=Default
+  source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+fi
+
+# git
+alias g='git status'
+alias ga='git add -A'
+alias gc='git commit'
+alias gd='git diff'
+alias gp='git pull --rebase'
+alias gsp='git stash && git pull --rebase && git stash pop'
+
+## java
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/"
+export PATH=$JAVA_HOME/bin:$PATH
+
+## ruby
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+
+alias b='bundle'
+alias be='bundle exec'
+
+# node
+export NVM_DIR="$HOME/.nvm"
+export NODE_PATH="`npm root -g`":$NODE_PATH
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # aws
 export AWS_CLI=/usr/local/bin/aws
+export AWS_DEFAULT_REGION=ap-southeast-2
 
 # authenticate config
 export IDP_USER=iparipsa
 export IDP_HOST=idp.realestate.com.au
 source /usr/local/opt/saml-aws-functions/bash-functions
 
-# haskell
-export PATH="$HOME/Library/Haskell/bin:$PATH"
-
 # docker
-alias dm='docker-machine'
 alias dc='docker-compose'
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+
+# fuck command
+eval "$(thefuck --alias)"
+alias f='fuck'
+
+# adds private key identities to the authentication agent
+ssh-add
