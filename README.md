@@ -1,10 +1,8 @@
-workstation-setup
-=================
+# workstation-setup
 
 This project contains my .bash_profile, .prompt, and a setup script.
 
-usage
-=====
+# usage
 
 ```
 git clone git@github.com:iparips/workstation-setup.git
@@ -12,8 +10,7 @@ cd workstation-setup
 ./setup.sh
 ```
 
-what setup.sh does / installs
-=======================
+# what setup.sh does / installs
 
 - homebrew
 - git
@@ -24,4 +21,6 @@ what setup.sh does / installs
 - sources bash profile
 - installs withenv
 
+# things to install via brew
 
+brew install git z nvm chruby thefuck bash-git-prompt ag jq
