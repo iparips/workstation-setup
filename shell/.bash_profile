@@ -5,8 +5,9 @@ export PATH=$PATH:/usr/local/tools/rea-slip-utils/bin
 
 ## Bash Autocompletion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+  source $(brew --prefix)/etc/bash_completion
 fi
+source /usr/local/etc/bash_completion.d/git-completion.bash
 
 export EDITOR='subl'
 
@@ -16,13 +17,16 @@ export EDITOR='subl'
 ## commonly used dirs
 alias rea='cd ~/Code/REA'
 
-# Git Bash Prompt
-if [ -f "$(brew --prefix bash-git-prompt)/share/gitprompt.sh" ]; then
-  GIT_PROMPT_THEME=Default
-  source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
-fi
-
 # git
+
+# Git Bash Prompt
+# if [ -f "$(brew --prefix bash-git-prompt)/share/gitprompt.sh" ]; then
+#   GIT_PROMPT_THEME=Default
+#   source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+# fi
+
+source ~/.prompt
+
 alias g='git status'
 alias ga='git add -A'
 alias gc='git commit'
@@ -30,6 +34,7 @@ alias gd='git diff'
 alias gp='git pull --rebase'
 alias gsp='git stash && git pull --rebase && git stash pop'
 alias gl="git log --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
+alias gb="git branch --sort=-committerdate"
 
 ## java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/"
