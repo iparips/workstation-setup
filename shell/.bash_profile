@@ -61,7 +61,6 @@ export AWS_DEFAULT_REGION=ap-southeast-2
 # authenticate config
 export IDP_USER=iparipsa
 export IDP_HOST=idp.realestate.com.au
-source /usr/local/opt/saml-aws-functions/bash-functions
 
 # docker
 alias dc='docker-compose'
