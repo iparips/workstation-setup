@@ -37,7 +37,7 @@ alias gl="git log --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgree
 alias gb="git branch --sort=-committerdate"
 
 ## java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/"
 export PATH=$JAVA_HOME/bin:$PATH
 
 ## ruby
