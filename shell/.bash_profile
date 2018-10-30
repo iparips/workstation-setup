@@ -6,8 +6,8 @@ export PATH=$PATH:/usr/local/tools/rea-slip-utils/bin
 ## Bash Autocompletion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
+  source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 fi
-source /usr/local/etc/bash_completion.d/git-completion.bash
 
 export EDITOR='subl'
 
