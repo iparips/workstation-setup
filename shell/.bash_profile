@@ -14,7 +14,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 fi
 
-export EDITOR='subl'
+export EDITOR='vi'
 
 # z
 . `brew --prefix`/etc/profile.d/z.sh
