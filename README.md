@@ -8,3 +8,9 @@ brew install git \
  z nvm chruby thefuck \
  bash-git-prompt ag jq \
  bash-completion
+
+# Favourite iterm themes
+
+- Monokai remastered
+- Nocturnal Winter (bluish)
+- Gruvbox Dark (brownish)
