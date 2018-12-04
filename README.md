@@ -5,7 +5,7 @@ This project contains my .bash_profile, .prompt, and a setup script.
 # things to install via brew
 
 brew install git \
- z nvm chruby thefuck \
+ z nvm chruby \
  bash-git-prompt ag jq \
  bash-completion
 
