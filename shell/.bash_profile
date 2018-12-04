@@ -1,3 +1,6 @@
+# this skips history for commands starting with a space
+export HISTCONTROL=ignorespace
+
 ## PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$PATH:/usr/local/lib/node_modules/bin
