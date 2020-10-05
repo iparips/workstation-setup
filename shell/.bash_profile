@@ -4,7 +4,6 @@ export HISTCONTROL=ignorespace
 ## PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$PATH:/usr/local/lib/node_modules/bin
-export PATH=$PATH:/usr/local/tools/rea-slip-utils/bin
 
 ## Bash Autocompletion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -17,61 +16,27 @@ export EDITOR='vi'
 # z
 . `brew --prefix`/etc/profile.d/z.sh
 
-## commonly used dirs
-alias rea='cd ~/Code/REA'
-
-# git
-
-# Git Bash Prompt
-# if [ -f "$(brew --prefix bash-git-prompt)/share/gitprompt.sh" ]; then
-#   GIT_PROMPT_THEME=Default
-#   source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
-# fi
-
-source ~/.prompt
+# Git Log Format
+export GLF="--pretty=format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s"
 
 alias g='git status'
 alias ga='git add -A'
 alias gc='git commit'
-alias gd='git diff'
 alias gp='git pull --rebase'
 alias gsp='git stash && git pull --rebase && git stash pop'
-alias gl="git log --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
-alias gb="git branch --sort=-committerdate"
+alias glg="git log --graph \"$GLF\" --date=default"
+alias gl="git log \"$GLF\" --date=default"
+alias gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias glc="git log --oneline --graph --left-right --cherry-pick \"$GLF\" --date=default"
 
 ## java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/"
-export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$PATH:$JAVA_HOME/bin
 
-## ruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-
-alias b='bundle'
-alias be='bundle exec'
-
-# node
+## nvm
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
-
-export NODE_PATH="`npm root -g`":$NODE_PATH
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# aws
-export AWS_CLI=/usr/local/bin/aws
-export AWS_DEFAULT_REGION=ap-southeast-2
-
-# authenticate config
-export IDP_USER=iparipsa
-export IDP_HOST=idp.realestate.com.au
-
-# docker
-alias dc='docker-compose'
-export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
-
-# fuck command
-eval "$(thefuck --alias)"
-alias f='fuck'
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # adds private key identities to the authentication agent
 ssh-add
