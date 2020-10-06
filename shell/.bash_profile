@@ -40,3 +40,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # adds private key identities to the authentication agent
 ssh-add
+
+source ~/.prompt
