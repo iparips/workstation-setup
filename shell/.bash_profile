@@ -1,8 +1,13 @@
+set +e
+
 # this skips history for commands starting with a space
 export HISTCONTROL=ignorespace
 
+## Volta
+export VOLTA_HOME=$HOME/.volta
+
 ## PATH
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$VOLTA_HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$PATH:/usr/local/lib/node_modules/bin
 
 ## Bash Autocompletion
@@ -14,7 +19,7 @@ fi
 export EDITOR='vi'
 
 # z
-. `brew --prefix`/etc/profile.d/z.sh
+source $(brew --prefix)/etc/profile.d/z.sh
 
 # Git Log Format
 export GLF="--pretty=format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s"
@@ -33,10 +38,6 @@ alias glc="git log --oneline --graph --left-right --cherry-pick \"$GLF\" --date=
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/"
 export PATH=$PATH:$JAVA_HOME/bin
 
-## nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # adds private key identities to the authentication agent
 ssh-add
