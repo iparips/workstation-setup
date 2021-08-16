@@ -10,6 +10,9 @@ export VOLTA_HOME=$HOME/.volta
 export PATH=$VOLTA_HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$PATH:/usr/local/lib/node_modules/bin
 
+## Editor CLI integrations
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+
 ## Bash Autocompletion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
@@ -33,13 +36,26 @@ alias glg="git log --graph \"$GLF\" --date=default"
 alias gl="git log \"$GLF\" --date=default"
 alias gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias glc="git log --oneline --graph --left-right --cherry-pick \"$GLF\" --date=default"
+alias yp="yarn precommit"
 
 ## java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/"
 export PATH=$PATH:$JAVA_HOME/bin
 
-
 # adds private key identities to the authentication agent
 ssh-add
 
 source ~/.prompt
+
+# Google Cloud
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+export CLOUDSDK_PYTHON=python2
+# BEGIN ZDI
+export DOCKER_FOR_MAC_ENABLED=true
+source /Users/ilya.paripsa/Code/zendesk/zdi/dockmaster/zdi.sh
+# END ZDI
+
+# Ruby
+eval "$(rbenv init -)"
+
