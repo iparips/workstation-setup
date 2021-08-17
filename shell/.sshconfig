@@ -1,0 +1,15 @@
+# .ssh/config
+
+Host personal.github.com # fake subdomain
+  HostName github.com
+  User git
+  IdentityFile /Users/<username>/.ssh/personal-key
+  IdentitiesOnly yes
+
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile /Users/<username>/.ssh/work-key
+  IdentitiesOnly yes
+
+# Ref: https://www.devopsschool.com/blog/key-is-already-in-use-of-how-to-use-2-public-key-in-github/
