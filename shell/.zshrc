@@ -1,23 +1,22 @@
-set +e
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+source /opt/homebrew/share/zsh/site-functions
 
 # this skips history for commands starting with a space
 export HISTCONTROL=ignorespace
 
-## Volta
-export VOLTA_HOME=$HOME/.volta
-
-## PATH
-export PATH=$VOLTA_HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$PATH:/usr/local/lib/node_modules/bin
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 ## Editor CLI integrations
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
-
-## Bash Autocompletion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  source $(brew --prefix)/etc/bash_completion
-  source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
-fi
 
 export EDITOR='vi'
 
@@ -42,20 +41,13 @@ alias yp="yarn precommit"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/"
 export PATH=$PATH:$JAVA_HOME/bin
 
+## node
+export PATH=$PATH:/usr/local/lib/node_modules/bin
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+
 # adds private key identities to the authentication agent
 ssh-add
 
-source ~/.prompt
-
-# Google Cloud
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
-export CLOUDSDK_PYTHON=python2
-# BEGIN ZDI
-export DOCKER_FOR_MAC_ENABLED=true
-source /Users/ilya.paripsa/Code/zendesk/zdi/dockmaster/zdi.sh
-# END ZDI
-
-# Ruby
-eval "$(rbenv init -)"
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
