@@ -14,6 +14,7 @@ brew install git \
   z nvm \
   ag jq \
   romkatv/powerlevel10k/powerlevel10k \
+  sublime-merge sublime-text sizeup\
 
 # Link bash_profile & prompt
 ln -F -s $(pwd)/shell/.zshrc ~/.zshrc
