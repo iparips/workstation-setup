@@ -5,9 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
 source /opt/homebrew/share/zsh/site-functions
 
 # this skips history for commands starting with a space
@@ -15,10 +17,10 @@ export HISTCONTROL=ignorespace
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
-## Editor CLI integrations
-export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
-
+## Editor Setup
 export EDITOR='vi'
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+export PATH=$PATH:/Users/iparipsa/bin
 
 # z
 source $(brew --prefix)/etc/profile.d/z.sh
@@ -38,7 +40,7 @@ alias glc="git log --oneline --graph --left-right --cherry-pick \"$GLF\" --date=
 alias yp="yarn precommit"
 
 ## java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/"
+export JAVA_HOME=$(/usr/libexec/java_home -v "11")
 export PATH=$PATH:$JAVA_HOME/bin
 
 ## node
@@ -49,5 +51,6 @@ export NVM_DIR="$HOME/.nvm"
 # adds private key identities to the authentication agent
 ssh-add
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Work
+source ~/.zshrc_work
+

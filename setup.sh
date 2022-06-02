@@ -14,8 +14,11 @@ brew install git \
   z nvm \
   ag jq \
   romkatv/powerlevel10k/powerlevel10k \
-  sublime-merge sublime-text sizeup\
+  sublime-merge sublime-text sizeup \
+  busycal \
 
-# Link bash_profile & prompt
+
+# Link zshrc & p10k config
 ln -F -s $(pwd)/shell/.zshrc ~/.zshrc
+ln -F -s $(pwd)/shell/.p10k.zsh ~/.p10k.zsh
 source ~/.zshrc
