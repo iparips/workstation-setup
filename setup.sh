@@ -14,7 +14,7 @@ brew install git \
   z nvm \
   ag jq \
   romkatv/powerlevel10k/powerlevel10k \
-  sublime-merge sublime-text sizeup \
+  sublime-merge sublime-text rectangle \
   busycal \
 
 
