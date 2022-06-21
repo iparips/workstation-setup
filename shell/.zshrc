@@ -1,3 +1,9 @@
+# Work
+source ~/.zshrc_work
+
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+[[ -f "$HOME/.localaliases" ]] && source "$HOME/.localaliases"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -39,6 +45,8 @@ alias gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(
 alias glc="git log --oneline --graph --left-right --cherry-pick \"$GLF\" --date=default"
 alias yp="yarn precommit"
 
+setopt NO_NOMATCH # makes git checkout HEAD^ work again
+
 ## java
 export JAVA_HOME=$(/usr/libexec/java_home -v "11")
 export PATH=$PATH:$JAVA_HOME/bin
@@ -51,6 +59,7 @@ export NVM_DIR="$HOME/.nvm"
 # adds private key identities to the authentication agent
 ssh-add
 
-# Work
-source ~/.zshrc_work
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
