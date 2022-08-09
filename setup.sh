@@ -13,6 +13,7 @@ fi
 brew install git \
   z nvm \
   ag jq \
+  htop \
   romkatv/powerlevel10k/powerlevel10k \
   sublime-merge sublime-text rectangle \
   busycal \
