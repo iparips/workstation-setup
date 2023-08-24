@@ -3,6 +3,7 @@
 #
 
 [alias]
+	g = status
 	ga = add -A
 	gaa = add --all
 	gapa = add --patch
