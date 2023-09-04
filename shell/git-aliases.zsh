@@ -1,9 +1,8 @@
 #
-# Aliases from zsh git-plugin
+# Aliases from ohmyzsh git-plugin
 #
 
 [alias]
-	g = status
 	ga = add -A
 	gaa = add --all
 	gapa = add --patch
@@ -14,41 +13,23 @@
 
   # git branch
 	gb = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'
+	gbr = branch -r --sort=committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'
 	gba = branch --all
 	gbd = branch --delete	
 	gbD = branch --delete --force
   	gbnm = branch --no-merged
-  	gbr = branch --remote
   	ggsup = branch --set-upstream-to = origin/$(git_current_branch)
   	gpsup = push --set-upstream origin $(git_current_branch)
   	gpsupf = push --set-upstream origin $(git_current_branch) --force-with-lease
 	
-  # git blame & bisect
-  	gbl = blame -b -w
-  	gbs = bisect
-	gbsb = bisect bad
-	gbsg = bisect good
-	gbsr = bisect reset
-	gbss = bisect start
-
   # commit
 	gc = commit --verbose
 	gca = commit --verbose --amend
-	gcam = commit --all --message
-	gcsm = commit --signoff --message
-	gcas = commit --all --signoff
-	gcasm = commit --all --signoff --message
-  	gcmsg = commit --message
-  	gcs = commit --gpg-sign
-  	gcss = commit --gpg-sign --signoff
-  	gcssm = commit --gpg-sign --signoff --message
+	gcm = commit --message
 
   # checkout
-  	gcb = checkout -b
-	gcm = checkout $(git_main_branch)
-	gcd = checkout $(git_develop_branch)
 	gco = checkout
-	gcor = checkout --recurse-submodules
+  	gcb = checkout -b
 	
   # cherry pick
  	gcp = cherry-pick
@@ -92,11 +73,6 @@
   	glum = pull upstream $(git_main_branch)
   	gluc = pull upstream $(git_current_branch)
 
-  # ignored
-	gignore = update-index --assume-unchanged
-	gignored = ls-files -v | grep "^[[:lower:]]"
-	git-svn-dcommit-push = svn dcommit && git push github $(git_main_branch):svntrunk
-
   # log
   	gp = log --pretty='format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=default
 	glg = log --graph --pretty='format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=default
@@ -137,32 +113,19 @@
 	grev = revert
 	
   # reset
-  	grh = reset
-	grhh = reset --hard
+  	grh = reset HEAD
+	grhh = reset HEAD --hard
 	groh = reset origin/$(git_current_branch) --hard
 	gru = reset --
-
   	grs = restore
   	grss = restore --source
   	grst = restore --staged
 
-  # remote
-  	grmv = remote rename
-	grrm = remote remove	
-	grset = remote set-url
-	grt = cd "$(git rev-parse --show-toplevel || echo .)"
-	grup = remote update
-	grv = remote --verbose
-  	gr = remote
-  	gra = remote add
-
   # status
+	g = status
 	gsb = status --short --branch
-	gsd = svn dcommit
 	gsh = show
-	gsi = submodule init
 	gsps = show --pretty = short --show-signature
-	gsr = svn rebase
 	gss = status --short
 	gst = status
   	gwch = whatchanged -p --abbrev-commit --pretty = medium
@@ -176,7 +139,19 @@
 	gsts = stash show --text
 	gstu = gsta --include-untracked
 	gstall = stash --all
-	
+  
+  # remote
+  	grmv = remote rename
+	grrm = remote remove	
+	grset = remote set-url
+	grt = cd "$(git rev-parse --show-toplevel || echo .)"
+	grup = remote update
+	grv = remote --verbose
+  	gr = remote
+  	gra = remote add
+
+# == rarely used aliases ==
+
   # switch
 	gsw = switch
 	gswc = switch --create
@@ -201,6 +176,19 @@
 	gams = am --skip
 	gama = am --abort
 	gamscp = am --show-current-patch
+
+  # git blame & bisect
+  	gbl = blame -b -w
+  	gbs = bisect
+	gbsb = bisect bad
+	gbsg = bisect good
+	gbsr = bisect reset
+	gbss = bisect start
+
+  # ignored
+	gignore = update-index --assume-unchanged
+	gignored = ls-files -v | grep "^[[:lower:]]"
+	git-svn-dcommit-push = svn dcommit && git push github $(git_main_branch):svntrunk
 
   # other
   	gcl = clone --recurse-submodules
