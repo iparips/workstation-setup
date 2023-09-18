@@ -17,10 +17,10 @@
 	gba = branch --all
 	gbd = branch --delete	
 	gbD = branch --delete --force
-  	gbnm = branch --no-merged
-  	ggsup = branch --set-upstream-to = origin/$(git_current_branch)
-  	gpsup = push --set-upstream origin $(git_current_branch)
-  	gpsupf = push --set-upstream origin $(git_current_branch) --force-with-lease
+	gbnm = branch --no-merged
+	ggsup = branch --set-upstream-to = origin/$(git_current_branch)
+	gpsup = push --set-upstream origin $(git_current_branch)
+	gpsupf = push --set-upstream origin $(git_current_branch) --force-with-lease
 	
   # commit
 	gc = commit --verbose
@@ -29,7 +29,7 @@
 
   # checkout
 	gco = checkout
-  	gcb = checkout -b
+  gcb = checkout -b
 	
   # cherry pick
  	gcp = cherry-pick
@@ -52,29 +52,29 @@
 	gfg = ls-files | grep
 
   # push
-  	gp = push
-  	gpd = push --dry-run
-  	gpf = push --force-with-lease --force-if-includes
-  	ggpush = push origin "$(git_current_branch)"
-  	gpoat = push origin --all && git push origin --tags
-  	gpod = push origin --delete
-  	gpu = push upstream
-  	gpv = push --verbose
+	gp = push
+	gpd = push --dry-run
+	gpf = push --force-with-lease --force-if-includes
+	ggpush = push origin "$(git_current_branch)"
+	gpoat = push origin --all && git push origin --tags
+	gpod = push origin --delete
+	gpu = push upstream
+	gpv = push --verbose
   
   # pull
-  	gpl = pull
-  	gpr = pull --rebase
-  	gupv = pull --rebase --verbose
-  	gupa = pull --rebase --autostash
-  	gupav = pull --rebase --autostash --verbose
-  	gupom = pull --rebase origin $(git_main_branch)
-  	ggpull = pull origin "$(git_current_branch)"
-  	gupomi = pull --rebase = interactive origin $(git_main_branch)
-  	glum = pull upstream $(git_main_branch)
-  	gluc = pull upstream $(git_current_branch)
+	gpl = pull
+	gpr = pull --rebase
+	gupv = pull --rebase --verbose
+	gupa = pull --rebase --autostash
+	gupav = pull --rebase --autostash --verbose
+	gupom = pull --rebase origin $(git_main_branch)
+	ggpull = pull origin "$(git_current_branch)"
+	gupomi = pull --rebase = interactive origin $(git_main_branch)
+	glum = pull upstream $(git_main_branch)
+	gluc = pull upstream $(git_current_branch)
 
   # log
-  	gp = log --pretty='format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=default
+  gp = log --pretty='format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=default
 	glg = log --graph --pretty='format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=default
 	glgp = log --stat --patch
 	glgg = log --graph
@@ -113,13 +113,13 @@
 	grev = revert
 	
   # reset
-  	grh = reset HEAD
+  grh = reset HEAD
 	grhh = reset HEAD --hard
 	groh = reset origin/$(git_current_branch) --hard
 	gru = reset --
-  	grs = restore
-  	grss = restore --source
-  	grst = restore --staged
+	grs = restore
+	grss = restore --source
+	grst = restore --staged
 
   # status
 	g = status
@@ -128,7 +128,7 @@
 	gsps = show --pretty = short --show-signature
 	gss = status --short
 	gst = status
-  	gwch = whatchanged -p --abbrev-commit --pretty = medium
+	gwch = whatchanged -p --abbrev-commit --pretty = medium
 
   # stash
 	gstaa = stash apply
@@ -141,14 +141,14 @@
 	gstall = stash --all
   
   # remote
-  	grmv = remote rename
+	grmv = remote rename
 	grrm = remote remove	
 	grset = remote set-url
 	grt = cd "$(git rev-parse --show-toplevel || echo .)"
 	grup = remote update
 	grv = remote --verbose
-  	gr = remote
-  	gra = remote add
+	gr = remote
+	gra = remote add
 
 # == rarely used aliases ==
 
@@ -178,8 +178,8 @@
 	gamscp = am --show-current-patch
 
   # git blame & bisect
-  	gbl = blame -b -w
-  	gbs = bisect
+	gbl = blame -b -w
+	gbs = bisect
 	gbsb = bisect bad
 	gbsg = bisect good
 	gbsr = bisect reset
@@ -191,14 +191,14 @@
 	git-svn-dcommit-push = svn dcommit && git push github $(git_main_branch):svntrunk
 
   # other
-  	gcl = clone --recurse-submodules
-  	gcf = config --list
-  	gclean = clean --interactive -d
-  	gpristine = reset --hard && git clean --force -dfx
-  	ghh = help
-  	gsu = submodule update
-  	gunignore = update-index --no-assume-unchanged
-  	gg = gui citool
-  	gga = gui citool --amend
-  	grm = rm
-  	grmc = rm --cached
+	gcl = clone --recurse-submodules
+	gcf = config --list
+	gclean = clean --interactive -d
+	gpristine = reset --hard && git clean --force -dfx
+	ghh = help
+	gsu = submodule update
+	gunignore = update-index --no-assume-unchanged
+	gg = gui citool
+	gga = gui citool --amend
+	grm = rm
+	grmc = rm --cached
