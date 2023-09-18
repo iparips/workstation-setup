@@ -193,7 +193,7 @@
   # other
 	gcl = clone --recurse-submodules
 	gcf = config --list
-	gclean = clean --interactive -d
+	gclean = clean -df
 	gpristine = reset --hard && git clean --force -dfx
 	ghh = help
 	gsu = submodule update
