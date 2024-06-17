@@ -12,6 +12,7 @@ fi
 
 brew install git \
   z nvm \
+  olets/tap/zsh-abbr \
   ag jq \
   htop \
   romkatv/powerlevel10k/powerlevel10k \

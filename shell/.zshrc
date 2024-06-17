@@ -12,6 +12,15 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-abbr:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -19,3 +28,4 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$PATH:$VOLTA_HOME/bin"
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+
