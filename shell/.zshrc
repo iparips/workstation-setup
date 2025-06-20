@@ -27,24 +27,31 @@ else
 
 fi
 
-source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
-
 # setup homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-abbr:$FPATH
-
-  autoload -Uz compinit
-  compinit
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
 
+# zsh smart tab completion
+FPATH=$(brew --prefix)/share/zsh-abbr:$FPATH
+autoload -Uz compinit
+compinit
+
+# Z
+source $(brew --prefix)/etc/profile.d/z.sh
+
+# Git
+source $(brew --prefix)/share/zsh/site-functions
+
+# Volta
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$PATH:$VOLTA_HOME/bin"
 
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/opt/python@3.12/libexec/bin:$PATH
 
-## openssl
+# Openssl
 export PATH="/usr/local/opt/openssl@3.4/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
@@ -52,13 +59,4 @@ export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
 export DYLD_LIBRARY_PATH="/usr/local/opt/openssl@3/lib:$DYLD_LIBRARY_PATH"
 
 # Work specific configs
-source $HOME/.workrc
-
-# Z
-. /opt/homebrew/etc/profile.d/z.sh
-
-## Git
-source /opt/homebrew/share/zsh/site-functions
-
-# Fast node manager
-eval "$(fnm env --use-on-cd --shell zsh)"
+[[ -f $HOME/.workrc ]] && source $HOME/.workrc
