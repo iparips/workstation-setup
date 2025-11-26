@@ -1,0 +1,68 @@
+# Minimal Starship config - just directory, git branch, and git status
+
+# Disable package version
+[package]
+disabled = true
+
+# Disable all language/tool versions
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[java]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[ruby]
+disabled = true
+
+[php]
+disabled = true
+
+[lua]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[scala]
+disabled = true
+
+[gradle]
+disabled = true
+
+# Keep directory
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+# Keep git branch
+[git_branch]
+symbol = " "
+
+# Keep git status (this shows the [$] and other indicators)
+[git_status]
+# You can customize these if you want different symbols
+conflicted = "🏳"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = '\$${count}'
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+# Keep prompt character
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+

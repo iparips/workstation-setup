@@ -15,12 +15,15 @@ brew install git \
   olets/tap/zsh-abbr \
   ag jq \
   htop \
-  romkatv/powerlevel10k/powerlevel10k \
+  starship \
   sublime-merge sublime-text rectangle \
   busycal \
 
+# Install Nerd Font for starship icons
+brew install --cask font-meslo-lg-nerd-font
 
-# Link zshrc & p10k config
+# Link zshrc and starship config
 ln -F -s $(pwd)/shell/.zshrc ~/.zshrc
-ln -F -s $(pwd)/shell/.p10k.zsh ~/.p10k.zsh
+mkdir -p ~/.config
+ln -F -s $(pwd)/shell/starship.toml ~/.config/starship.toml
 source ~/.zshrc
