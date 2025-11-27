@@ -3,6 +3,11 @@
 # Based on ohmyzsh git-plugin
 #
 
+# Note: the following abbreviastions can't be used:
+# │  1 gpr - blocked by GNU pr command from coreutils (/opt/homebrew/bin/gpr)                                            │
+# │  2 gcp - blocked by GNU cp command from coreutils (/opt/homebrew/bin/gcp)                                            │
+# │  3 grm - blocked by GNU rm command from coreutils (/opt/homebrew/bin/grm)
+
 # add
 abbr ga="git add -A"
 
@@ -24,7 +29,7 @@ abbr gco="git checkout"
 abbr gcb="git checkout -b"
 
 # cherry-pick
-abbr gcp="git cherry-pick"
+abbr gchp="git cherry-pick"
 abbr gcpa="git cherry-pick --abort"
 abbr gcpc="git cherry-pick --continue"
 
@@ -54,8 +59,7 @@ abbr gpu="git push upstream"
 abbr gpv="git push --verbose"
 
 # pull
-abbr gpl="git pull"
-abbr gpr="git pull --rebase"
+abbr gpl="git pull --rebase"
 abbr gupv="git pull --rebase --verbose"
 abbr gupa="git pull --rebase --autostash"
 abbr gupav="git pull --rebase --autostash --verbose"
@@ -180,5 +184,5 @@ abbr gsu="git submodule update"
 abbr gignore="git update-index --assume-unchanged"
 abbr gunignore="git update-index --no-assume-unchanged"
 abbr gignored="git ls-files -v | grep '^[[:lower:]]'"
-abbr grm="git rm"
-abbr grmc="git rm --cached"
+abbr grem="git rm"
+abbr gremc="git rm --cached"
