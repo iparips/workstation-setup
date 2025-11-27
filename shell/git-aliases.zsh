@@ -1,204 +1,184 @@
 #
-# Aliases from ohmyzsh git-plugin
+# Git abbreviations using zsh-abbr
+# Based on ohmyzsh git-plugin
 #
 
-[alias]
-	ga = add -A
-	gaa = add --all
-	gapa = add --patch
-	gau = add --update
-	gav = add --verbose
-	gap = apply
-	gapt = apply --3way
+# add
+abbr ga="git add -A"
 
-  # git branch
-	gb = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'
-	gbr = branch -r --sort=committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'
-	gba = branch --all
-	gbd = branch --delete	
-	gbD = branch --delete --force
-	gbnm = branch --no-merged
-	ggsup = branch --set-upstream-to = origin/$(git_current_branch)
-	gpsup = push --set-upstream origin $(git_current_branch)
-	gpsupf = push --set-upstream origin $(git_current_branch) --force-with-lease
-	
-  # commit
-	gc = commit --verbose
-	gca = commit --verbose --amend
-	gcm = commit --message
+# branch
+abbr gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'"
+abbr gbr="git branch -r --sort=committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'"
+abbr gbd="git branch --delete"
+abbr ggsup="git branch --set-upstream-to=origin/\$(git_current_branch)"
+abbr gpsup="git push --set-upstream origin \$(git_current_branch)"
+abbr gpsupf="git push --set-upstream origin \$(git_current_branch) --force-with-lease"
 
-  # checkout
-	gco = checkout
-  gcb = checkout -b
-	
-  # cherry pick
- 	gcp = cherry-pick
-	gcpa = cherry-pick --abort
-	gcpc = cherry-pick --continue
-	
-  # diff
-	gd = diff
-	gdca = diff --cached
-	gdcw = diff --cached --word-diff
-	gdct = describe --tags $(git rev-list --tags --max-count = 1)
-	gds = diff --staged
-	gdt = diff-tree --no-commit-id --name-only -r
-	gdup = git diff @{upstream}
-	gdw = diff --word-diff
+# commit
+abbr gc="git commit --verbose"
+abbr gca="git commit --verbose --amend"
+abbr gcm="git commit --message"
 
-  # fetch
-	gf = fetch
-	gfo = fetch origin
-	gfg = ls-files | grep
+# checkout
+abbr gco="git checkout"
+abbr gcb="git checkout -b"
 
-  # push
-	gp = push
-	gpd = push --dry-run
-	gpf = push --force-with-lease --force-if-includes
-	ggpush = push origin "$(git_current_branch)"
-	gpoat = push origin --all && git push origin --tags
-	gpod = push origin --delete
-	gpu = push upstream
-	gpv = push --verbose
-  
-  # pull
-	gpl = pull
-	gpr = pull --rebase
-	gupv = pull --rebase --verbose
-	gupa = pull --rebase --autostash
-	gupav = pull --rebase --autostash --verbose
-	gupom = pull --rebase origin $(git_main_branch)
-	ggpull = pull origin "$(git_current_branch)"
-	gupomi = pull --rebase = interactive origin $(git_main_branch)
-	glum = pull upstream $(git_main_branch)
-	gluc = pull upstream $(git_current_branch)
+# cherry-pick
+abbr gcp="git cherry-pick"
+abbr gcpa="git cherry-pick --abort"
+abbr gcpc="git cherry-pick --continue"
 
-  # log
-  gp = log --pretty='format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=default
-	glg = log --graph --pretty='format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=default
-	glgp = log --stat --patch
-	glgg = log --graph
-	glgga = log --graph --decorate --all
-	glgm = log --graph --max-count = 10
-	glo = log --oneline --decorate
-	glol = "log --graph --pretty = %Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"
-	glols = "log --graph --pretty = %Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset --stat"
-	glod = "log --graph --pretty = %Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset"
-	glods = "log --graph --pretty = %Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset --date = short"
-	glola = "log --graph --pretty = %Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset --all"
-	glog = log --oneline --decorate --graph
-	gloga = log --oneline --decorate --graph --all
-	glp = "_git_log_prettily"
-  	gcount = shortlog --summary --numbered
+# diff
+abbr gd="git diff"
+abbr gdca="git diff --cached"
+abbr gdcw="git diff --cached --word-diff"
+abbr gdct="git describe --tags \$(git rev-list --tags --max-count=1)"
+abbr gds="git diff --staged"
+abbr gdt="git diff-tree --no-commit-id --name-only -r"
+abbr gdup="git diff @{upstream}"
+abbr gdw="git diff --word-diff"
 
-  # merge
-	gm = merge
-	gmom = merge origin/$(git_main_branch)
-	gmtl = mergetool --no-prompt
-	gmtlvim = mergetool --no-prompt --tool = vimdiff
-	gmum = merge upstream/$(git_main_branch)
-	gma = merge --abort
-	gms = "merge --squash"
+# fetch
+abbr gf="git fetch"
+abbr gfo="git fetch origin"
+abbr gfg="git ls-files | grep"
 
-  # rebase
-	grb = rebase
-	grba = rebase --abort
-	grbc = rebase --continue
-	grbd = rebase $(git_develop_branch)
-	grbi = rebase --interactive
-	grbm = rebase $(git_main_branch)
-	grbom = rebase origin/$(git_main_branch)
-	grbo = rebase --onto
-	grbs = rebase --skip
-	grev = revert
-	
-  # reset
-  grh = reset HEAD
-	grhh = reset HEAD --hard
-	groh = reset origin/$(git_current_branch) --hard
-	gru = reset --
-	grs = restore
-	grss = restore --source
-	grst = restore --staged
+# push
+abbr gp="git push"
+abbr gpd="git push --dry-run"
+abbr gpf="git push --force-with-lease --force-if-includes"
+abbr ggpush="git push origin \"\$(git_current_branch)\""
+abbr gpoat="git push origin --all && git push origin --tags"
+abbr gpod="git push origin --delete"
+abbr gpu="git push upstream"
+abbr gpv="git push --verbose"
 
-  # status
-	g = status
-	gsb = status --short --branch
-	gsh = show
-	gsps = show --pretty = short --show-signature
-	gss = status --short
-	gst = status
-	gwch = whatchanged -p --abbrev-commit --pretty = medium
+# pull
+abbr gpl="git pull"
+abbr gpr="git pull --rebase"
+abbr gupv="git pull --rebase --verbose"
+abbr gupa="git pull --rebase --autostash"
+abbr gupav="git pull --rebase --autostash --verbose"
+abbr gupom="git pull --rebase origin \$(git_main_branch)"
+abbr ggpull="git pull origin \"\$(git_current_branch)\""
+abbr gupomi="git pull --rebase=interactive origin \$(git_main_branch)"
+abbr glum="git pull upstream \$(git_main_branch)"
+abbr gluc="git pull upstream \$(git_current_branch)"
 
-  # stash
-	gstaa = stash apply
-	gstc = stash clear
-	gstd = stash drop
-	gstl = stash list
-	gstp = stash pop
-	gsts = stash show --text
-	gstu = gsta --include-untracked
-	gstall = stash --all
-  
-  # remote
-	grmv = remote rename
-	grrm = remote remove	
-	grset = remote set-url
-	grt = cd "$(git rev-parse --show-toplevel || echo .)"
-	grup = remote update
-	grv = remote --verbose
-	gr = remote
-	gra = remote add
+# log
+abbr glg="git log --graph --pretty='format:%m %C(yellow)%h %C(red)%ad %C(blue)%an%C(green)%d %C(reset)%s' --date=default"
+abbr glgp="git log --stat --patch"
+abbr glgg="git log --graph"
+abbr glgga="git log --graph --decorate --all"
+abbr glgm="git log --graph --max-count=10"
+abbr glo="git log --oneline --decorate"
+abbr glol="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'"
+abbr glols="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat"
+abbr glod="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"
+abbr glods="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
+abbr glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
+abbr glog="git log --oneline --decorate --graph"
+abbr gloga="git log --oneline --decorate --graph --all"
+abbr gcount="git shortlog --summary --numbered"
 
-# == rarely used aliases ==
+# merge
+abbr gm="git merge"
+abbr gmom="git merge origin/\$(git_main_branch)"
+abbr gmtl="git mergetool --no-prompt"
+abbr gmtlvim="git mergetool --no-prompt --tool=vimdiff"
+abbr gmum="git merge upstream/\$(git_main_branch)"
+abbr gma="git merge --abort"
+abbr gms="git merge --squash"
 
-  # switch
-	gsw = switch
-	gswc = switch --create
-	gswm = switch $(git_main_branch)
-	gswd = switch $(git_develop_branch)
+# rebase
+abbr grb="git rebase"
+abbr grba="git rebase --abort"
+abbr grbc="git rebase --continue"
+abbr grbd="git rebase \$(git_develop_branch)"
+abbr grbi="git rebase --interactive"
+abbr grbm="git rebase \$(git_main_branch)"
+abbr grbom="git rebase origin/\$(git_main_branch)"
+abbr grbo="git rebase --onto"
+abbr grbs="git rebase --skip"
+abbr grev="git revert"
 
-  # tag
-	gts = tag --sign
-	gtv = tag | sort -V
-	gtl = gtl(){ git tag --sort = -v:refname -n --list "${1}*" }; noglob gtl
+# reset
+abbr grh="git reset HEAD"
+abbr grhh="git reset HEAD --hard"
+abbr groh="git reset origin/\$(git_current_branch) --hard"
+abbr gru="git reset --"
+abbr grs="git restore"
+abbr grss="git restore --source"
+abbr grst="git restore --staged"
 
-  # work tree
-	gwt = worktree
-	gwta = worktree add
-	gwtls = worktree list
-	gwtmv = worktree move
-	gwtrm = worktree remove
+# status
+abbr g="git status"
+abbr gsb="git status --short --branch"
+abbr gsh="git show"
+abbr gsps="git show --pretty=short --show-signature"
+abbr gss="git status --short"
+abbr gst="git status"
+abbr gwch="git whatchanged -p --abbrev-commit --pretty=medium"
 
-  # am
-	gam = am
-	gamc = am --continue
-	gams = am --skip
-	gama = am --abort
-	gamscp = am --show-current-patch
+# stash
+abbr gstaa="git stash apply"
+abbr gstc="git stash clear"
+abbr gstd="git stash drop"
+abbr gstl="git stash list"
+abbr gstp="git stash pop"
+abbr gsts="git stash show --text"
+abbr gstall="git stash --all"
 
-  # git blame & bisect
-	gbl = blame -b -w
-	gbs = bisect
-	gbsb = bisect bad
-	gbsg = bisect good
-	gbsr = bisect reset
-	gbss = bisect start
+# remote
+abbr grmv="git remote rename"
+abbr grrm="git remote remove"
+abbr grset="git remote set-url"
+abbr grup="git remote update"
+abbr grv="git remote --verbose"
+abbr gr="git remote"
+abbr gra="git remote add"
 
-  # ignored
-	gignore = update-index --assume-unchanged
-	gignored = ls-files -v | grep "^[[:lower:]]"
-	git-svn-dcommit-push = svn dcommit && git push github $(git_main_branch):svntrunk
+# switch
+abbr gsw="git switch"
+abbr gswc="git switch --create"
+abbr gswm="git switch \$(git_main_branch)"
+abbr gswd="git switch \$(git_develop_branch)"
 
-  # other
-	gcl = clone --recurse-submodules
-	gcf = config --list
-	gclean = clean -df
-	gpristine = reset --hard && git clean --force -dfx
-	ghh = help
-	gsu = submodule update
-	gunignore = update-index --no-assume-unchanged
-	gg = gui citool
-	gga = gui citool --amend
-	grm = rm
-	grmc = rm --cached
+# tag
+abbr gts="git tag --sign"
+abbr gtv="git tag | sort -V"
+
+# worktree
+abbr gwt="git worktree"
+abbr gwta="git worktree add"
+abbr gwtls="git worktree list"
+abbr gwtmv="git worktree move"
+abbr gwtrm="git worktree remove"
+
+# am
+abbr gam="git am"
+abbr gamc="git am --continue"
+abbr gams="git am --skip"
+abbr gama="git am --abort"
+abbr gamscp="git am --show-current-patch"
+
+# blame & bisect
+abbr gbl="git blame -b -w"
+abbr gbs="git bisect"
+abbr gbsb="git bisect bad"
+abbr gbsg="git bisect good"
+abbr gbsr="git bisect reset"
+abbr gbss="git bisect start"
+
+# other
+abbr gcl="git clone --recurse-submodules"
+abbr gcf="git config --list"
+abbr gclean="git clean -df"
+abbr gpristine="git reset --hard && git clean --force -dfx"
+abbr ghh="git help"
+abbr gsu="git submodule update"
+abbr gignore="git update-index --assume-unchanged"
+abbr gunignore="git update-index --no-assume-unchanged"
+abbr gignored="git ls-files -v | grep '^[[:lower:]]'"
+abbr grm="git rm"
+abbr grmc="git rm --cached"
