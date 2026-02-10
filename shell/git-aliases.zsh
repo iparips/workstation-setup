@@ -143,7 +143,7 @@ abbr gr="git remote"
 abbr gra="git remote add"
 
 # switch
-abbr gsw="git switch"
+abbr gsw='f() { git fetch origin "$@" && git switch "$@"; }; f'
 abbr gswc="git switch --create"
 abbr gswm="git switch \$(git_main_branch)"
 abbr gswd="git switch \$(git_develop_branch)"
