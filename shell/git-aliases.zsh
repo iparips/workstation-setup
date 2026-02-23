@@ -105,6 +105,7 @@ abbr grbm="git rebase \$(git_main_branch)"
 abbr grbom="git rebase origin/\$(git_main_branch)"
 abbr grbo="git rebase --onto"
 abbr grbs="git rebase --skip"
+abbr gric="git rebase -i \$(git merge-base origin/ci/cached-master HEAD) --autosquash"
 abbr grev="git revert"
 
 # reset
