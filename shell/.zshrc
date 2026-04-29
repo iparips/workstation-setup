@@ -1,51 +1,65 @@
-# Setup Homebrew (Apple Silicon vs Intel)
-if [[ -d /opt/homebrew ]]; then
-  export OPT_HOMEBREW=/opt/homebrew
-else
-  export OPT_HOMEBREW=/usr/local
+# ── Homebrew (macOS only) ────────────────────────────
+if [[ "$OSTYPE" == darwin* ]]; then
+  if [[ -d /opt/homebrew ]]; then
+    export OPT_HOMEBREW=/opt/homebrew
+  else
+    export OPT_HOMEBREW=/usr/local
+  fi
+  eval "$($OPT_HOMEBREW/bin/brew shellenv)"
 fi
 
-eval "$($OPT_HOMEBREW/bin/brew shellenv)"
+# ── PATH ─────────────────────────────────────────────
+export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH"
+if [[ -n "$OPT_HOMEBREW" ]]; then
+  export PATH="$OPT_HOMEBREW/bin:$OPT_HOMEBREW/sbin:$PATH"
+  # Sublime Text (macOS only)
+  export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+  # Python (Jmake-managed, macOS only)
+  export PATH="$OPT_HOMEBREW/opt/python@3.12/libexec/bin:$PATH"
+fi
 
-# Zsh config
+# ── Oh-My-Zsh ────────────────────────────────────────
 export ZSH_DISABLE_COMPFIX="true"
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME=""
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-# Zsh abbreviated commands - source AFTER oh-my-zsh to preserve key bindings
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-abbr:$FPATH
-  autoload -Uz compinit
-  compinit
+# ── zsh-abbr (source AFTER oh-my-zsh) ───────────────
+if [[ -n "$OPT_HOMEBREW" ]] && [[ -f "$OPT_HOMEBREW/share/zsh-abbr/zsh-abbr.zsh" ]]; then
+  # macOS via Homebrew
+  FPATH="$(brew --prefix)/share/zsh-abbr:$FPATH"
+  autoload -Uz compinit && compinit
+  source "$OPT_HOMEBREW/share/zsh-abbr/zsh-abbr.zsh"
+elif [[ -f "$HOME/.zsh-abbr/zsh-abbr.zsh" ]]; then
+  # Linux (cloned from GitHub)
+  FPATH="$HOME/.zsh-abbr:$FPATH"
+  autoload -Uz compinit && compinit
+  source "$HOME/.zsh-abbr/zsh-abbr.zsh"
 fi
 
-# Load zsh-abbr AFTER oh-my-zsh so space expansion works
-source $OPT_HOMEBREW/share/zsh-abbr/zsh-abbr.zsh
+# ── Starship prompt ──────────────────────────────────
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
 
-# Starship shell prompt
-eval "$(starship init zsh)"
+# ── Z (directory jumper) ─────────────────────────────
+if [[ -f "$OPT_HOMEBREW/etc/profile.d/z.sh" ]]; then
+  . "$OPT_HOMEBREW/etc/profile.d/z.sh"
+elif [[ -f "$HOME/.z.sh" ]]; then
+  . "$HOME/.z.sh"
+fi
 
-# PATH
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin":$PATH
-export PATH=$OPT_HOMEBREW/bin:$OPT_HOMEBREW/sbin:$PATH
+# ── fnm (Node version manager) ───────────────────────
+if command -v fnm &>/dev/null; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
 
-# Z
-. $OPT_HOMEBREW/etc/profile.d/z.sh
+# ── Docker CLI completions ───────────────────────────
+if [[ -d "$HOME/.docker/completions" ]]; then
+  fpath=("$HOME/.docker/completions" $fpath)
+  autoload -Uz compinit && compinit
+fi
 
-# Node - Fast node manager
-eval "$(fnm env --use-on-cd --shell zsh)"
-
-# Python - auto-configured by Jmake
-export PATH="$OPT_HOMEBREW/opt/python@3.12/libexec/bin:$PATH"
-
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/iparipsa/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-
-# Work specific configs
-[ -f $HOME/.workrc ] && source $HOME/.workrc
+# ── Work-specific config ─────────────────────────────
+[[ -f "$HOME/.workrc" ]] && source "$HOME/.workrc"

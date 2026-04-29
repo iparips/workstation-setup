@@ -4,42 +4,57 @@ Cross-platform development environment setup for macOS and Ubuntu Linux.
 
 ## Quick Start
 
-### Full Setup (macOS & Ubuntu with Homebrew)
-
 ```bash
 git clone <your-repo-url>
 cd workstation-setup
 ./setup.sh
 ```
 
-This installs:
-- Homebrew (if not present)
-- CLI tools (git, zsh-abbr, starship, fnm, z, etc.)
-- oh-my-zsh
-- Git abbreviations with auto-expansion
-- Starship shell prompt
-- GUI apps (macOS only)
+`setup.sh` auto-detects the OS and runs the right platform installer, then applies shared config.
 
-### Git Abbreviations Only (Linux/Devbox - No Homebrew)
+### What gets installed
 
-For containerized environments like devbox where Homebrew isn't available:
+| Tool | macOS | Ubuntu |
+|---|---|---|
+| oh-my-zsh | ✓ | ✓ |
+| starship (prompt) | ✓ via brew | ✓ via curl |
+| zsh-abbr | ✓ via brew | ✓ via git clone |
+| z (dir jumper) | ✓ via brew | ✓ via curl |
+| ripgrep | ✓ via brew | ✓ via apt |
+| jq | ✓ via brew | ✓ via apt |
+| bat | ✓ via brew | ✓ via apt |
+| fnm (Node) | ✓ via brew | optional (see platforms/ubuntu.sh) |
+| Git abbreviations | ✓ | ✓ |
+| Sublime Text/Merge | ✓ (cask) | — |
+| Rectangle | ✓ (cask) | — |
+| Meslo Nerd Font | ✓ (cask) | manual (see below) |
 
-```bash
-git clone <your-repo-url>
-cd workstation-setup
-./setup-git-abbr-linux.sh
+## Structure
+
+```
+workstation-setup/
+├── setup.sh                  # Entry point — detects OS, orchestrates everything
+├── platforms/
+│   ├── mac.sh                # macOS: Homebrew + CLI tools + GUI casks
+│   └── ubuntu.sh             # Ubuntu/Debian: apt + curl installs
+├── setup/
+│   ├── oh-my-zsh.sh          # Shared: install oh-my-zsh
+│   ├── dotfiles.sh           # Shared: symlink .zshrc, starship.toml, git-aliases
+│   └── zsh-abbr.sh           # Shared: load git abbreviations into zsh-abbr store
+├── shell/
+│   ├── .zshrc                # Portable zsh config (macOS + Linux)
+│   ├── git-aliases.zsh       # Git abbreviations (100+ shortcuts)
+│   └── starship.toml         # Starship prompt config
+├── tool-settings/            # App-specific settings (iTerm, RubyMine, Sublime)
+└── diagnose-abbr.sh          # Debug script for zsh-abbr issues
 ```
 
-This lightweight script:
-- Installs oh-my-zsh (for git helper functions)
-- Installs zsh-abbr from GitHub
-- Sets up git abbreviations with auto-expansion
-- Creates a minimal `.zshrc`
+### Adding a new platform
 
-**Prerequisites**: `zsh` must be installed
-```bash
-sudo apt install zsh git curl -y
-```
+1. Create `platforms/<distro>.sh` with the package installs for that distro
+2. Add a `case` entry in `setup.sh` matching the distro's `$ID` from `/etc/os-release`
+
+That's it — all shared steps (oh-my-zsh, dotfiles, git abbreviations) run automatically.
 
 ## Git Abbreviations
 
@@ -57,36 +72,28 @@ Examples:
 
 See `shell/git-aliases.zsh` for the full list of 100+ abbreviations.
 
-## Supported Platforms
+To reload abbreviations after editing `git-aliases.zsh`:
 
-- **macOS** (Apple Silicon & Intel)
-- **Ubuntu Linux** (and other Debian-based distros)
-- **Devbox / Containers** (use `setup-git-abbr-linux.sh`)
+```bash
+source setup/zsh-abbr.sh
+```
 
-# Shell Prompt
+## Shell Prompt
 
-Using [Starship](https://starship.rs/) for a minimal, fast shell prompt. Configuration is in `shell/starship.toml`.
+Using [Starship](https://starship.rs/) for a minimal, fast shell prompt. Config is in `shell/starship.toml`.
 
-## Terminal Font Configuration
+## Terminal Font
 
 ### macOS (iTerm2)
 
-After running `setup.sh`, configure iTerm to use the Meslo Nerd Font:
+`setup.sh` installs Meslo Nerd Font via Homebrew cask. Then in iTerm2:
 
-1. Open iTerm2 → Preferences (⌘,)
-2. Go to **Profiles** → **Text**
-3. Click **Change Font** under "Font"
-4. Select **MesloLGS NF** (any variant like Regular, Bold, etc.)
-5. Recommended size: 13-14pt
+1. Preferences (⌘,) → Profiles → Text → Change Font
+2. Select **MesloLGS NF** (13–14pt recommended)
 
-Favourite iTerm themes:
-- Monokai remastered
-- Nocturnal Winter (bluish)
-- Gruvbox Dark (brownish)
+Favourite iTerm themes: Monokai Remastered, Nocturnal Winter, Gruvbox Dark.
 
 ### Ubuntu/Linux
-
-Install a Nerd Font manually for terminal icons:
 
 ```bash
 mkdir -p ~/.local/share/fonts
@@ -95,4 +102,4 @@ wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20R
 fc-cache -fv
 ```
 
-Then configure your terminal emulator to use "MesloLGS NF" font.
+Then set your terminal emulator font to **MesloLGS NF**.
