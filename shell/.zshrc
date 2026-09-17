@@ -1,3 +1,12 @@
+# ── Claude Code session marker ───────────────────────
+# Claude Code exports CLAUDE_CODE_CHILD_SESSION into the shells it spawns, so
+# a session started from inside one writes no transcript. An interactive shell
+# reached by opening a tab is not that nested session, and iTerm2 hands a
+# restored tab the environment it was born with, so the marker outlives the
+# agent that set it and silently disables transcript saving for every later
+# run of claude in that tab.
+[[ -o interactive ]] && unset CLAUDE_CODE_CHILD_SESSION
+
 # ── Homebrew (macOS only) ────────────────────────────
 if [[ "$OSTYPE" == darwin* ]]; then
   if [[ -d /opt/homebrew ]]; then
